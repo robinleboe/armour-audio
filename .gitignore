@@ -66,3 +66,6 @@ node_modules/
 
 # mac
 .DS_Store
+
+#fb-cred
+.fb-cred
