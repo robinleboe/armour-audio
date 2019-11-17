@@ -1,4 +1,4 @@
-let db ={
+let db = {
     notes: [
         {
             userHandle: 'user',
