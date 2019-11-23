@@ -69,3 +69,6 @@ node_modules/
 
 #fb-cred
 .fb-cred
+
+#video log
+videolog.txt
