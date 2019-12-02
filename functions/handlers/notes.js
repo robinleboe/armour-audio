@@ -1,20 +1,31 @@
 const { db } = require('../util/admin');
 
 exports.getAllNotes = (req, res) => {
+  // access Firestore 'notes' collection
   db.collection('notes')
     .orderBy('createdAt', 'desc')
     .get()
+    // receive 'data' of type FirebaseFirestore.QuerySnapshot
     .then(data => {
+      // create an empty array to store retrieved notes
       let notes = [];
+
+      // iterate through retieved docs
       data.forEach(doc => {
+        // add docs to array as objects
         notes.push({
+          // add the Firestore generated 'doc.id' to object
           noteId: doc.id,
+          // add existing props to using the spread operator
+          // on object returned by .data() 
           ...doc.data()
         });
       });
+      // return an array of objects to the client
       return res.json(notes);
     })
     .catch(err => {
+      // log error and return 500 internal server error to client
       console.error(err);
       res.status(500).json({ error: err.code });
     });
